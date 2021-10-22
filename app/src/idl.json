@@ -1,0 +1,322 @@
+{
+  "version": "0.0.0",
+  "name": "modular",
+  "instructions": [
+    {
+      "name": "initializeModular",
+      "accounts": [
+        {
+          "name": "modular",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "registerItem",
+      "accounts": [
+        {
+          "name": "miner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "modular",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "itemMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "itemOne",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "itemTwo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "itemThree",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "recipeCounts",
+          "type": {
+            "array": [
+              "u8",
+              3
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "craftItem",
+      "accounts": [
+        {
+          "name": "crafter",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "pda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "crafterAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "modular",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "itemOne",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "itemTwo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "itemThree",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceOne",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTwo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceThree",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "craftTarget",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "registerResource",
+      "accounts": [
+        {
+          "name": "miner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "modular",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "rarity",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "mine",
+      "accounts": [
+        {
+          "name": "miner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "resourceAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pda",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Modular",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "resources",
+            "type": {
+              "array": [
+                {
+                  "defined": "Resource"
+                },
+                10
+              ]
+            }
+          },
+          {
+            "name": "items",
+            "type": {
+              "array": [
+                {
+                  "defined": "Item"
+                },
+                1000
+              ]
+            }
+          },
+          {
+            "name": "itemsCount",
+            "type": "i16"
+          },
+          {
+            "name": "resourcesCount",
+            "type": "i16"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "Resource",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "publicKey"
+          },
+          {
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                280
+              ]
+            }
+          },
+          {
+            "name": "rarity",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Recipe",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "item",
+            "type": "publicKey"
+          },
+          {
+            "name": "count",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Item",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": {
+              "array": [
+                "u8",
+                280
+              ]
+            }
+          },
+          {
+            "name": "recipes",
+            "type": {
+              "array": [
+                {
+                  "defined": "Recipe"
+                },
+                3
+              ]
+            }
+          },
+          {
+            "name": "address",
+            "type": "publicKey"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "address": "7jpnzC3ZyPCX93ymm4zq3ePV6YBJMPiBZueieUC8jnnt"
+  }
+}

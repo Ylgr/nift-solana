@@ -1,5 +1,5 @@
 [programs.localnet]
-nift_solana = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+nift_solana = "7jpnzC3ZyPCX93ymm4zq3ePV6YBJMPiBZueieUC8jnnt"
 
 [registry]
 url = "https://anchor.projectserum.com"
